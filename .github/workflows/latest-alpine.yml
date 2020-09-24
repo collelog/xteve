@@ -1,4 +1,4 @@
-name: 2.1.2-alpine
+name: latest-alpine
 
 on: [ workflow_dispatch ]
 
@@ -36,7 +36,7 @@ jobs:
             --cache-to "type=local,dest=/tmp/.buildx-cache" \
             --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
             --output "type=image,push=false" \
-            --tag collelog/xteve:2.1.2-alpine \
+            --tag collelog/xteve:latest-alpine \
             --file ./2.1.2-alpine.Dockerfile ./
       -
         name: Docker Buildx (push)
@@ -45,12 +45,12 @@ jobs:
             --cache-from "type=local,src=/tmp/.buildx-cache" \
             --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64 \
             --output "type=image,push=true" \
-            --tag collelog/xteve:2.1.2-alpine \
+            --tag collelog/xteve:latest-alpine \
             --file ./2.1.2-alpine.Dockerfile ./
       -
         name: Docker Check Manifest
         run: |
-          docker run --rm mplatform/mquery collelog/xteve:2.1.2-alpine
+          docker run --rm mplatform/mquery collelog/xteve:latest-alpine
       -
         name: Clear
         if: always()
