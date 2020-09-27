@@ -27,7 +27,7 @@ LABEL maintainer "collelog <collelog.cavamin@gmail.com>"
 COPY --from=xteve-build /build /
 
 RUN set -eux && \
-	apk add --no-cache \
+	apk add --no-cache --update-cache \
 		ffmpeg \
 		tzdata \
 		vlc && \
